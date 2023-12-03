@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %} home {% endblock %}
+{% block content %} 
+<div class="container">    
+            <table class="table mx-auto d-block" style="width: 1000px;">
+                <tr>
+                    <th> Title: </th>
+                    <td> {{ info.title }} </td>
+                </tr>
+                <tr>
+                    <th> Date of creattion:: </th>
+                    <td> {{ info.created }} </td>
+                </tr>
+                <tr>
+                    <th> Due date: </th>
+                    <td> {{ info.due_date }} </td>
+                </tr>
+                <tr>
+                    <th> Content: </th>
+                    <td> {{ info.content }} </td>
+                </tr>
+                <tr>
+                    <th> Category: </th>
+                    <td> {{ info.category }} </td>
+                </tr>
+                <tr>
+                    <th> Status: </th>
+                    <td> {% if info.status %} done {% else %} not done {% endif %} </td>
+                </tr>
+                <tr>
+                    <form method="post">
+                    {% csrf_token %}
+                    <td> 
+                        <a class="btn btn-warning w-100 py-2" href="{% url 'delete' info.pk %}" class="delete"> Delete </a>
+                    </td>
+                    <td>
+                    
+                        <button class="btn btn-success w-100 py-2" type="submit"> Done </button>                    
+                    
+                    </td>
+                    </form>
+                </tr>
+            </table>      
+</div>
+
+{% endblock %}
